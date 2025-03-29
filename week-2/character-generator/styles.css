@@ -3,9 +3,73 @@
   Chapter 1
   Programming Assignment
 
-  Author:
-  Date:
-  Filename:
+  Author: John Kuronya
+  Date: 3/24/25
+  Filename: styles.css
 */
 
-/* Your CSS goes here */
+/* General Styles */
+body {
+  font-family: 'Georgia', serif;
+  background: url('images/sword.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f8f8f2;
+  text-align: center;
+  padding: 50px 0;
+}
+
+/* Main Container */
+#mainContainer {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  width: 350px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+/* Form Elements */
+label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffd700;
+  display: block;
+  margin-top: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #222;
+  color: #fff;
+}
+
+/* Button Styling */
+button {
+  margin-top: 15px;
+  background-color: #8b0000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #b22222;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Output Section */
+#characterOutput {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffd700;
+}

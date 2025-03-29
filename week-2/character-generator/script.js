@@ -3,23 +3,56 @@
   Chapter 1
   Programming Assignment
 
-  Author:
-  Date:
-  Filename:
+  Author: John Kuronya
+  Date: 3/24/25
+  Filename: script.js
 */
 
 "use strict";
 
-function createCharacter(name, gender, characterClass) {
-  // TODO: Implement this function
-}
+document.addEventListener("DOMContentLoaded", function () {
+  function createCharacter(name, gender, characterClass) {
+      return {
+          getName: () => name,
+          getGender: () => gender,
+          getClass: () => characterClass
+      };
+  }
 
-document.getElementById("generateHero").addEventListener("click", function(e) {
-  e.preventDefault();
+  document.getElementById("generateHero").addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent page reload
 
-  // TODO: Get form values
+      // Get form values
+      const nameInput = document.getElementById("heroName");
+      const genderInput = document.getElementById("heroGender");
+      const classInput = document.getElementById("heroClass");
 
-  // TODO: Create character
+      // Ensure elements exist
+      if (!nameInput || !genderInput || !classInput) {
+          console.error("Form elements not found.");
+          return;
+      }
 
-  // TODO: Display character information
+      const charName = nameInput.value.trim();
+      const charGender = genderInput.value;
+      const charClass = classInput.value;
+
+      // Ensure values are provided
+      if (!charName || !charGender || !charClass) {
+          alert("Please fill out all fields.");
+          return;
+      }
+
+      // Create character
+      const character = createCharacter(charName, charGender, charClass);
+
+      // Display character information
+      document.getElementById("characterOutput").innerHTML = `
+          <p><strong>Name:</strong> ${character.getName()}</p>
+          <p><strong>Gender:</strong> ${character.getGender()}</p>
+          <p><strong>Class:</strong> ${character.getClass()}</p>
+      `;
+  });
 });
+
+
