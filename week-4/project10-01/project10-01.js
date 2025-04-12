@@ -4,8 +4,8 @@
       Project 10-01
 
       Project to create a drag and drop jigsaw puzzle
-      Author: 
-      Date:   
+      Author: John Kuronya
+      Date: 4/7/25
 
       Filename: project10-01.js
 */
@@ -37,9 +37,47 @@ for (let i = 0; i < 48; i++) {
    piece.style.top = (rowNum - 1)*98 + 7 + "px";
    piece.style.left = (colNum - 1)*98 + 7 + "px";
    piece.draggable = false; // override the default draggability of images
-   puzzleBoard.appendChild(piece);      
+   puzzleBoard.appendChild(piece);
 }
 
 // Node list representing the puzzle pieces
 let pieces = document.querySelectorAll("div#puzzleBoard img");
 
+for(let item of pieces)
+  {
+     item.addEventListener("pointerdown", grabPiece);
+  }
+
+  function grabPiece(event)
+  {
+     pointerX = event.clientX;
+     pointerY = event.clientY;
+
+     event.target.style.touchAction = "none";
+
+     zCounter++;
+
+     event.target.style.zIndex = zCounter;
+
+     pieceX = event.target.offsetLeft;
+     pieceY = event.target.offsetTop;
+
+     event.target.addEventListener("pointermove", movePiece);
+
+     event.target.addEventListener("pointerup", dropPiece);
+  }
+
+  function movePiece(event)
+  {
+     let diffX = event.clientX - pointerX;
+     let diffY = event.clientY - pointerY;
+
+     event.target.style.left = pieceX + diffX + "px";
+     event.target.style.top = pieceY + diffY + "px";
+  }
+
+  function dropPiece(event)
+  {
+     event.target.removeEventListener("pointermove", movePiece);
+     event.target.removeEventListener("pointerup", dropPiece);
+  }
