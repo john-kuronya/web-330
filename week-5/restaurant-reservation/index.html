@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <!--
       Pragmatic JavaScript
       Chapter 2
       Programming Assignment
 
-      Author:
-      Date:
-      Filename:
+      Author: John Kuronya
+      Date: 4/14/25
+      Filename: index.html
     -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Table Reservation</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
     <div class="form-container">
+      <h1>Reserve a Table</h1>
       <form id="reservationForm">
         <label for="name">Name:</label><br />
-        <input type="text" id="name" name="name" /><br />
-        <label for="tableNumber">Table Number:</label><br />
-        <input type="number" id="tableNumber" name="tableNumber" /><br />
+        <input type="text" id="name" name="name" required /><br />
+        <label for="tableNumber">Table Number (1–5):</label><br />
+        <input type="number" id="tableNumber" name="tableNumber" min="1" max="5" required /><br />
         <input type="submit" value="Reserve" />
       </form>
       <p id="message"></p>
@@ -27,3 +30,4 @@
     <script src="script.js"></script>
   </body>
 </html>
+
