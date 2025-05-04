@@ -3,31 +3,90 @@
   Chapter 3
   Programming Assignment
 
-  Author:
-  Date:
-  Filename: chefs.js
+  Author: John Kuronya
+  Date: 4-28-25
+  Filename: script.js
 */
 
 "use strict";
 
-// TODO: Define an array of chef objects
+// Define an array of chef objects
 let chefs = [
-  // Each chef object should have a name, specialty, weakness, and restaurantLocation
+  {
+    name: "Gordon Ramsay",
+    specialty: "British cuisine",
+    weakness: "Short temper",
+    restaurantLocation: "London, UK"
+  },
+  {
+    name: "Masaharu Morimoto",
+    specialty: "Japanese fusion",
+    weakness: "Overcommitting",
+    restaurantLocation: "New York, USA"
+  },
+  {
+    name: "Dominique Crenn",
+    specialty: "French fine dining",
+    weakness: "Perfectionism",
+    restaurantLocation: "San Francisco, USA"
+  }
 ];
 
-// TODO: Define a function to retrieve the first chef's information
-function retrieveChef1() {
-  // This function should return a promise that resolves with the chef's information after a delay
+// Reusable function to display chef data
+function displayChefData(index, chef) {
+  const container = document.getElementById(`chef${index + 1}`);
+  container.innerHTML = `
+    <h2>${chef.name}</h2>
+    <p><strong>Specialty:</strong> ${chef.specialty}</p>
+    <p><strong>Weakness:</strong> ${chef.weakness}</p>
+    <p><strong>Restaurant Location:</strong> ${chef.restaurantLocation}</p>
+  `;
 }
 
-// TODO: Define a function to retrieve the second chef's information
-function retrieveChef2() {
-  // This function should return a promise that resolves with the chef's information after a delay
+// Reusable function to display error and retry button
+function displayError(index, message, retryFunction) {
+  const container = document.getElementById(`chef${index + 1}`);
+  container.innerHTML = `
+    <p style="color: red;">${message}</p>
+    <button onclick="retryChef(${index})">Retry</button>
+  `;
 }
 
-// TODO: Define a function to retrieve the third chef's information
-function retrieveChef3() {
-  // This function should return a promise that resolves with the chef's information after a delay
+// Retrieve functions for each chef with simulated delay and random failure
+function retrieveChef(index) {
+  return new Promise((resolve, reject) => {
+    const delay = 2000 + index * 1000;
+    setTimeout(() => {
+      // Simulate random rejection
+      if (Math.random() < 0.3) {
+        reject(`Failed to load Chef ${index + 1}'s data.`);
+      } else {
+        resolve(chefs[index]);
+      }
+    }, delay);
+  });
 }
 
-// TODO: Use Promise.allSettled to retrieve all chefs' information and update the webpage accordingly
+// Retry handler
+function retryChef(index) {
+  retrieveChef(index)
+    .then(chef => displayChefData(index, chef))
+    .catch(err => displayError(index, err, () => retryChef(index)));
+}
+
+// Load all chef data using Promise.allSettled
+function loadChefs() {
+  const promises = [0, 1, 2].map(index => retrieveChef(index));
+  Promise.allSettled(promises).then(results => {
+    results.forEach((result, index) => {
+      if (result.status === "fulfilled") {
+        displayChefData(index, result.value);
+      } else {
+        displayError(index, result.reason, () => retryChef(index));
+      }
+    });
+  });
+}
+
+// Start loading
+loadChefs();

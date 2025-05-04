@@ -3,9 +3,69 @@
   Chapter 3
   Programming Assignment
 
-  Author:
-  Date:
-  Filename:
+  Author: John Kuronya
+  Date: 4-28-25
+  Filename: styles.css
 */
 
-/* Add your CSS styles here */
+body {
+  background-image: url('images/kitchen.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #050505;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: rgb(223, 223, 223);
+}
+
+.chef-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chef-container h2 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.chef-container p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+#error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Retry Button Styling */
+button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
