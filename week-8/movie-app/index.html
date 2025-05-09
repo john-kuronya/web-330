@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <!--
       Pragmatic JavaScript
       Chapter 4
       Programming Assignment
 
-      Author:
-      Date:
-      Filename:
+      Author: John Kuronya
+      Date: 5/5/25
+      Filename: index.html
     -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Finder</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
     <div class="form-container">
+      <h1>Movie Finder</h1>
       <form id="movie-form">
-        <input type="text" id="title-input" placeholder="Enter movie title" />
+        <input type="text" id="title-input" placeholder="Enter movie title" required />
         <button type="submit">Search</button>
       </form>
       <div id="movie-info">
